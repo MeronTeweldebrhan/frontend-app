@@ -6,7 +6,7 @@ import { backendClient } from '../clients/backendClients';
 const PostForm = () => {
   const [formData, setFormData] = useState({
     title: "",
-    author: ""
+    body: ""
   });
 
   const handleChange = (e) => {
@@ -24,14 +24,14 @@ const PostForm = () => {
 
       console.log("TOKEN", token);
       
-      const response = await backendClient.post("/post/newpost", formData,{
+      const response = await backendClient.post("/posts", formData,{
         headers: {
           Authorization: `Bearer ${token}` 
         }
       });
       alert("Post created successfully!");
       
-      setFormData({ title: "", author: "" });
+       setFormData({ title: "", body: "" });
       console.log(response.data);
     } catch (error) {
       console.error("Error creating post:", error);
@@ -49,6 +49,15 @@ const PostForm = () => {
           value={formData.title}
           required
           onChange={handleChange}
+          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+        <textarea
+          name="body"
+          placeholder="Write your post here..."
+          value={formData.body}
+          required
+          onChange={handleChange}
+          rows={5}
           className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
         <button

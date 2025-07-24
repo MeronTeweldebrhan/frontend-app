@@ -10,7 +10,7 @@ useEffect(() => {
       const token = localStorage.getItem('fullapp-token'); 
 
 console.log("TOKEN", token);
-      const response= await backendClient.get('/getposts/post', {
+      const response= await backendClient.get('/posts', {
         headers: {
           Authorization: `Bearer ${token}` 
         }
@@ -31,7 +31,7 @@ console.log("TOKEN", token);
         <ul>
           {postList.map((post) => (
             <li key={post._id}>
-              <strong>{post.title}</strong> by {post.author}
+              {post.title} by {post.author}
             </li>
           ))}
         </ul>
