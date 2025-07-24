@@ -29,10 +29,10 @@ console.log("TOKEN", token);
       <h2>Post List</h2>
       {postList.length > 0 ? (
         <ul>
-          {postList.map((post) => (
-            <li key={post._id}>
-              {post.title} by {post.author}
-            </li>
+         {postList.map((post) => (
+  <li key={post._id}>
+    {post.title} by {post.author?.email}
+  </li>
           ))}
         </ul>
       ) : (
