@@ -1,18 +1,29 @@
 // import { useState } from 'react'
-import BookForm from './components/BookForm'
-import BookList from './components/BookList'
-import './App.css'
+
+import { Routes, Route } from "react-router-dom";
+import HomePage from "./Pages/HomePage";
+import RegisterPage from "./Pages/RegisterPage";
+import LoginPage from "./Pages/LoginPage";
+import PostPage from "./Pages/PostPage";
+import Navbar from "./components/Navbar";
+
 
 function App() {
   // const [count, setCount] = useState(0)
 
   return (
     <>
-      <h1>Welcome To Full Stack app</h1>
-      <BookForm/>
-      <BookList books={[]} />
+     <Navbar />
+      
+      <Routes>
+        <Route path="/" element={<HomePage/>} />
+        <Route path="/register" element={<RegisterPage/>} />
+        <Route path="/login" element={<LoginPage/>} />
+        <Route path="/posts" element={<PostPage/>} />
+      </Routes>
+      
     </>
-  )
+  );
 }
 
-export default App
+export default App;

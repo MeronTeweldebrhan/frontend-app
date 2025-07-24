@@ -1,17 +1,24 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-const BookList = () => {
-const [bookList, setBookList] = useState([]);
+import { backendClient } from '../clients/backendClients';
+
+const PostList = () => {
+const [postList, setPostList] = useState([]);
 
 useEffect(() => {
   const fetchBooks = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/post');
-      console.log( response.data);
-      setBookList(response.data);
+      const token = localStorage.getItem('fullapp-token'); 
+
+console.log("TOKEN", token);
+      const response= await backendClient.get('/getposts/post', {
+        headers: {
+          Authorization: `Bearer ${token}` 
+        }
+      });
+      setPostList(response.data);
         
     } catch (error) {
-      console.error('Error fetching books:', error);
+      console.error('Error fetching Posts:', error);
     }
   }
     fetchBooks();
@@ -20,11 +27,11 @@ useEffect(() => {
   return (
     <div>
       <h2>Post List</h2>
-      {bookList.length > 0 ? (
+      {postList.length > 0 ? (
         <ul>
-          {bookList.map((book) => (
-            <li key={book._id}>
-              <strong>{book.title}</strong> by {book.author}
+          {postList.map((post) => (
+            <li key={post._id}>
+              <strong>{post.title}</strong> by {post.author}
             </li>
           ))}
         </ul>
@@ -35,4 +42,4 @@ useEffect(() => {
   );
 }
 
-export default BookList;
+export default PostList;
