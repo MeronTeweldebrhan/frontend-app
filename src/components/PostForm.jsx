@@ -62,7 +62,7 @@ const PostForm = () => {
         />
         <button
           type="submit"
-          className="w-full bg-gray-800 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200"
+          className="w-300 bg-gray-800 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200"
         >
           Add Post
         </button>
