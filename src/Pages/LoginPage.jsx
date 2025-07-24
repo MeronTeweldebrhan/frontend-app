@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { backendClient } from '../clients/backendClients.js';
 import { useNavigate } from "react-router-dom";
+
+
 function LoginPage() {
     const navigate = useNavigate();
   const [form, setForm] = useState({ email: '', password: '' });
@@ -18,7 +20,8 @@ function LoginPage() {
        console.log("Token:", token);
       console.log("User:", user);
 
-      localStorage.setItem("fullapp-token", JSON.stringify(token));
+      localStorage.setItem("fullapp-token", token);
+    
       navigate("/Posts");
     } catch (err) {
       console.error(err);
